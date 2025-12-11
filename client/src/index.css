@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest-green: #2C5F2D;
+  --color-warm-beige: #F5F5DC;
+  --color-terracotta: #E2725B;
+  --color-off-white: #FAF9F6;
+
+  --font-sans: Inter, sans-serif;
+}
+
+body {
+  background-color: var(--color-off-white);
+  color: #1F2937;
+}

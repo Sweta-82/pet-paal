@@ -1,0 +1,144 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import rateLimit from 'express-rate-limit';
+import http from 'http';
+import { Server } from 'socket.io';
+
+import connectDB from './config/db.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import authRoutes from './routes/authRoutes.js';
+import petRoutes from './routes/petRoutes.js';
+import applicationRoutes from './routes/applicationRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import chatbotRoutes from './routes/chatbotRoutes.js';
+
+import Message from './models/Message.js';
+import Notification from './models/Notification.js';
+
+dotenv.config();
+
+connectDB();
+
+const app = express();
+const server = http.createServer(app);
+
+// Check Cloudinary Config
+if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    console.error('ERROR: Cloudinary credentials missing in .env file!');
+} else {
+    console.log('Cloudinary credentials found.');
+}
+
+const io = new Server(server, {
+    cors: {
+        origin: ['http://localhost:5173', 'http://localhost:5174'], // Allow both ports
+        credentials: true,
+    },
+});
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:5174'], // Allow both ports
+    credentials: true
+}));
+app.use(helmet());
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+// Rate Limiting
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000, // Limit each IP to 1000 requests per windowMs
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use(limiter);
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/pets', petRoutes);
+app.use('/api/applications', applicationRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/payment', paymentRoutes);
+app.use('/api/blogs', blogRoutes);
+app.use('/api/chatbot', chatbotRoutes);
+
+app.get('/', (req, res) => {
+    res.send('API is running...');
+});
+
+// Error Handling
+app.use(notFound);
+app.use(errorHandler);
+
+// Socket.io
+io.on('connection', (socket) => {
+    console.log('Connected to socket.io');
+
+    socket.on('setup', (userData) => {
+        socket.join(userData._id);
+        socket.emit('connected');
+    });
+
+    socket.on('join_chat', (room) => {
+        socket.join(room);
+        console.log('User Joined Room: ' + room);
+    });
+
+    socket.on('new_message', async (newMessageReceived) => {
+        const { sender, receiver, content, chatId } = newMessageReceived;
+
+        if (!receiver) return console.log('Receiver not defined');
+
+        // Save message to DB
+        try {
+            const message = await Message.create({
+                sender: sender._id,
+                receiver: receiver._id,
+                content,
+                chatId,
+            });
+
+            // Emit to receiver
+            socket.in(receiver._id).emit('message_received', message);
+
+            console.log('Creating notification for receiver:', receiver._id);
+            // Create Notification for the receiver
+            const notification = await Notification.create({
+                recipient: receiver._id,
+                type: 'new_message',
+                message: `New message from ${sender.name}: ${content.substring(0, 30)}${content.length > 30 ? '...' : ''}`,
+                relatedId: chatId,
+            });
+            console.log('Notification created:', notification);
+            socket.in(receiver._id).emit('notification_received', notification);
+
+        } catch (error) {
+            console.error('Error saving message or notification:', error);
+        }
+    });
+
+    socket.on('disconnect', () => {
+        console.log('USER DISCONNECTED');
+    });
+});
+
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+});
