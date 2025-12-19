@@ -95,6 +95,8 @@ const updateApplicationStatus = asyncHandler(async (req, res) => {
     }
 });
 
+
+
 export {
     createApplication,
     getMyApplications,
