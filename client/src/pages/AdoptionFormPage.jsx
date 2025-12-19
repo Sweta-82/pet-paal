@@ -32,15 +32,15 @@ const AdoptionFormPage = () => {
   if (!pet) return <div className="text-center py-10">Loading pet details...</div>;
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Adopt {pet.name}</h1>
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen pt-32 transition-colors duration-500">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Adopt {pet.name}</h1>
 
-      <div className="bg-white p-8 rounded-xl shadow-lg">
+      <div className="bg-white/60 backdrop-blur-xl p-10 rounded-3xl shadow-2xl shadow-pastel-purple/20 border border-white/60">
         <div className="flex items-center mb-6">
-          <img src={pet.images[0]} alt={pet.name} className="w-20 h-20 object-cover rounded-full mr-4" />
+          <img src={pet.images[0]} alt={pet.name} className="w-24 h-24 object-cover rounded-2xl shadow-md mr-6 border-2 border-white" />
           <div>
-            <h2 className="text-xl font-semibold">{pet.name}</h2>
-            <p className="text-gray-600">{pet.breed} • {pet.age} years old</p>
+            <h2 className="text-2xl font-bold text-gray-800">{pet.name}</h2>
+            <p className="text-gray-600 font-medium">{pet.breed} • {pet.age} years old</p>
           </div>
         </div>
 
@@ -48,20 +48,20 @@ const AdoptionFormPage = () => {
 
         <form onSubmit={handleSubmit(submitHandler)} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Why do you want to adopt {pet.name}?</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2 pl-1">Why do you want to adopt {pet.name}?</label>
             <textarea
               rows="6"
-              className={`w-full border ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm p-2`}
+              className={`w-full border ${errors.message ? 'border-red-500' : 'border-pastel-pink/30'} rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm p-4 bg-white/50 transition-all resize-none`}
               placeholder="Tell us about your home, lifestyle, and experience with pets..."
               {...register("message", { required: "Please provide a reason for adoption" })}
             ></textarea>
-            {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+            {errors.message && <p className="text-red-500 text-xs mt-1 pl-1">{errors.message.message}</p>}
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-forest-green text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
+            className="w-full bg-gradient-to-r from-pastel-purple to-pastel-pink hover:from-pastel-pink hover:to-pastel-purple text-white py-3 px-4 rounded-2xl font-bold transition-all disabled:opacity-50 shadow-lg transform hover:scale-[1.02] duration-300 text-lg"
           >
             {loading ? 'Submitting...' : 'Submit Application'}
           </button>

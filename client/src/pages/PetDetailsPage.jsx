@@ -27,63 +27,63 @@ const PetDetailsPage = () => {
   if (!pet) return null;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <Link to="/browse" className="text-forest-green hover:underline mb-4 inline-block">&larr; Back to Browse</Link>
+    <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-32 pb-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500">
+      <Link to="/browse" className="text-pastel-purple hover:text-pastel-pink hover:underline mb-6 inline-block font-bold transition-colors">&larr; Back to Browse</Link>
 
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl shadow-pastel-purple/20 border border-white/60 overflow-hidden">
         <div className="md:flex">
-          {/* Image Gallery (Placeholder for now, just showing first image) */}
-          <div className="md:w-1/2">
-            <img src={pet.images[0]} alt={pet.name} className="w-full h-96 object-cover" />
+          {/* Image Gallery */}
+          <div className="md:w-1/2 relative bg-gray-100">
+            <img src={pet.images[0]} alt={pet.name} className="w-full h-full object-cover min-h-[500px]" />
           </div>
 
           {/* Details */}
-          <div className="md:w-1/2 p-8">
-            <div className="flex justify-between items-start">
+          <div className="md:w-1/2 p-10 flex flex-col justify-center">
+            <div className="flex justify-between items-start mb-6">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">{pet.name}</h1>
-                <p className="text-gray-600 flex items-center mt-1">
-                  <FaMapMarkerAlt className="mr-1" /> {pet.location || pet.shelter?.location || 'Location not available'}
+                <h1 className="text-5xl font-bold text-gray-800 drop-shadow-sm mb-2" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>{pet.name}</h1>
+                <p className="text-gray-600 flex items-center text-lg">
+                  <FaMapMarkerAlt className="mr-2 text-pastel-purple" /> {pet.location || pet.shelter?.location || 'Location not available'}
                 </p>
               </div>
-              <button className="text-gray-400 hover:text-red-500 transition-colors">
-                <FaHeart className="h-8 w-8" />
+              <button className="text-gray-300 hover:text-pastel-pink transition-colors transform hover:scale-110">
+                <FaHeart className="h-10 w-10" />
               </button>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="bg-off-white p-3 rounded-lg text-center">
-                <span className="block text-xs text-gray-500 uppercase">Breed</span>
-                <span className="font-semibold text-gray-800">{pet.breed}</span>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-white/50 border border-pastel-pink/20 p-4 rounded-2xl text-center shadow-sm hover:shadow-md transition-all">
+                <span className="block text-xs text-gray-500 uppercase font-bold tracking-wider">Breed</span>
+                <span className="font-bold text-gray-800 text-lg">{pet.breed}</span>
               </div>
-              <div className="bg-off-white p-3 rounded-lg text-center">
-                <span className="block text-xs text-gray-500 uppercase">Age</span>
-                <span className="font-semibold text-gray-800">{pet.age} Years</span>
+              <div className="bg-white/50 border border-pastel-pink/20 p-4 rounded-2xl text-center shadow-sm hover:shadow-md transition-all">
+                <span className="block text-xs text-gray-500 uppercase font-bold tracking-wider">Age</span>
+                <span className="font-bold text-gray-800 text-lg">{pet.age} Years</span>
               </div>
-              <div className="bg-off-white p-3 rounded-lg text-center">
-                <span className="block text-xs text-gray-500 uppercase">Gender</span>
-                <span className="font-semibold text-gray-800">{pet.gender}</span>
+              <div className="bg-white/50 border border-pastel-pink/20 p-4 rounded-2xl text-center shadow-sm hover:shadow-md transition-all">
+                <span className="block text-xs text-gray-500 uppercase font-bold tracking-wider">Gender</span>
+                <span className="font-bold text-gray-800 text-lg">{pet.gender}</span>
               </div>
-              <div className="bg-off-white p-3 rounded-lg text-center">
-                <span className="block text-xs text-gray-500 uppercase">Size</span>
-                <span className="font-semibold text-gray-800">{pet.size}</span>
+              <div className="bg-white/50 border border-pastel-pink/20 p-4 rounded-2xl text-center shadow-sm hover:shadow-md transition-all">
+                <span className="block text-xs text-gray-500 uppercase font-bold tracking-wider">Size</span>
+                <span className="font-bold text-gray-800 text-lg">{pet.size}</span>
               </div>
             </div>
 
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">About {pet.name}</h3>
-              <p className="text-gray-600 leading-relaxed">{pet.description}</p>
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-800 mb-3" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>About {pet.name}</h3>
+              <p className="text-gray-600 leading-relaxed text-lg bg-white/40 p-6 rounded-2xl border border-white/50">{pet.description}</p>
             </div>
 
-            <div className="mt-8 flex flex-col gap-4">
+            <div className="flex flex-col gap-4 mt-auto">
               {userInfo && userInfo.role === 'adopter' ? (
                 <>
-                  <Link to={`/adoption-form/${pet._id}`} className="block text-center w-full bg-forest-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors shadow-md">
+                  <Link to={`/adoption-form/${pet._id}`} className="block text-center w-full bg-gradient-to-r from-pastel-purple to-pastel-pink hover:from-pastel-pink hover:to-pastel-purple text-white py-4 px-6 rounded-2xl font-bold shadow-lg transform hover:scale-[1.02] transition-all duration-300 text-lg">
                     Apply to Adopt {pet.name}
                   </Link>
                   <button
-                    onClick={() => navigate('/chat', { state: { userId: pet.shelter._id, user: pet.shelter } })}
-                    className="block text-center w-full bg-white text-forest-green border-2 border-forest-green py-3 px-6 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-sm"
+                    onClick={() => navigate('/chat', { state: { userId: pet.shelter._id, user: pet.shelter, petId: pet._id, pet: pet } })}
+                    className="block text-center w-full bg-white text-pastel-purple border-2 border-pastel-purple py-4 px-6 rounded-2xl font-bold hover:bg-pastel-purple hover:text-white transition-all shadow-sm"
                   >
                     Message Shelter
                   </button>
@@ -92,26 +92,26 @@ const PetDetailsPage = () => {
                 <div className="flex space-x-4">
                   <button
                     onClick={() => navigate(`/pets/edit/${pet._id}`)}
-                    className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
+                    className="flex-1 bg-blue-500 text-white py-4 px-6 rounded-2xl font-bold hover:bg-blue-600 transition-colors shadow-md"
                   >
                     Edit Listing
                   </button>
                   <button
                     onClick={handleDelete}
-                    className="flex-1 bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-md"
+                    className="flex-1 bg-red-500 text-white py-4 px-6 rounded-2xl font-bold hover:bg-red-600 transition-colors shadow-md"
                   >
                     Delete
                   </button>
                 </div>
               ) : (
-                <Link to="/login" className="block text-center w-full bg-forest-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors shadow-md">
+                <Link to="/login" className="block text-center w-full bg-pastel-purple text-white py-4 px-6 rounded-2xl font-bold hover:bg-pastel-pink transition-colors shadow-lg">
                   Login to Adopt
                 </Link>
               )}
             </div>
 
-            <div className="mt-6 flex items-center justify-center text-gray-500 text-sm">
-              <FaPaw className="mr-2 text-forest-green" />
+            <div className="mt-6 flex items-center justify-center text-gray-400 text-sm font-medium">
+              <FaPaw className="mr-2 text-pastel-pink" />
               <span>Posted by {pet.shelter?.name || 'Unknown Shelter'}</span>
             </div>
           </div>

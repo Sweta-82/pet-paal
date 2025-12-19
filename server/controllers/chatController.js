@@ -9,10 +9,11 @@ const getConversations = asyncHandler(async (req, res) => {
     // Find all messages where the current user is sender or receiver
     const messages = await Message.find({
         $or: [{ sender: req.user._id }, { receiver: req.user._id }],
-    }).sort({ createdAt: -1 });
+    })
+        .sort({ createdAt: -1 })
+        .populate('pet', 'name images');
 
-    const uniqueUserIds = new Set();
-    const conversations = [];
+    const uniqueConversations = new Map();
 
     for (const message of messages) {
         const otherUserId =
@@ -20,32 +21,44 @@ const getConversations = asyncHandler(async (req, res) => {
                 ? message.receiver.toString()
                 : message.sender.toString();
 
-        if (!uniqueUserIds.has(otherUserId)) {
-            uniqueUserIds.add(otherUserId);
-            const otherUser = await User.findById(otherUserId).select('name email role'); // Add avatar if available
-            conversations.push({
-                user: otherUser,
-                lastMessage: message,
-            });
+        const petId = message.pet ? message.pet._id.toString() : 'general';
+        const key = `${otherUserId}_${petId}`;
+
+        if (!uniqueConversations.has(key)) {
+            const otherUser = await User.findById(otherUserId).select('name email role');
+            if (otherUser) {
+                uniqueConversations.set(key, {
+                    user: otherUser,
+                    pet: message.pet,
+                    lastMessage: message,
+                });
+            }
         }
     }
 
-    res.json(conversations);
+    res.json(Array.from(uniqueConversations.values()));
 });
 
-// @desc    Get messages with a specific user
+// @desc    Get messages with a specific user (and optionally specific pet)
 // @route   GET /api/chat/:userId
 // @access  Private
 const getMessages = asyncHandler(async (req, res) => {
     const { userId } = req.params;
+    const { petId } = req.query;
     const myId = req.user._id;
 
-    const messages = await Message.find({
+    const query = {
         $or: [
             { sender: myId, receiver: userId },
             { sender: userId, receiver: myId },
         ],
-    }).sort({ createdAt: 1 });
+    };
+
+    if (petId) {
+        query.pet = petId;
+    }
+
+    const messages = await Message.find(query).sort({ createdAt: 1 });
 
     res.json(messages);
 });

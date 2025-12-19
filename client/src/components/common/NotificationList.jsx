@@ -35,14 +35,14 @@ const NotificationList = ({ notifications, onClose }) => {
       {notifications.map((notification) => (
         <div
           key={notification._id}
-          className={`p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer ${!notification.read ? 'bg-green-50' : ''}`}
+          className={`p-4 border-b border-pastel-pink/20 hover:bg-pastel-pink/10 transition-colors cursor-pointer ${!notification.read ? 'bg-pastel-purple/5' : ''}`}
           onClick={() => handleNotificationClick(notification)}
         >
           <div className="flex justify-between items-start">
-            <p className={`text-sm ${!notification.read ? 'font-semibold text-gray-900' : 'text-gray-600'}`}>
+            <p className={`text-sm ${!notification.read ? 'font-bold text-gray-800' : 'text-gray-500'}`}>
               {notification.message}
             </p>
-            {!notification.read && <FaCircle className="text-forest-green w-2 h-2 mt-1 flex-shrink-0" />}
+            {!notification.read && <FaCircle className="text-pastel-purple w-2 h-2 mt-1 flex-shrink-0" />}
           </div>
           <p className="text-xs text-gray-400 mt-1">
             {new Date(notification.createdAt).toLocaleDateString()}

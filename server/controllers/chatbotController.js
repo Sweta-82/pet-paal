@@ -10,18 +10,18 @@ const chatWithGemini = asyncHandler(async (req, res) => {
     const { message, history } = req.body;
 
     if (!process.env.GEMINI_API_KEY) {
+        console.error('ERROR: GEMINI_API_KEY is missing from environment variables.');
         res.status(500);
         throw new Error('Gemini API Key is not configured');
+    } else {
+        console.log('Gemini API Key is present.');
     }
 
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
         const chat = model.startChat({
             history: history || [],
-            generationConfig: {
-                maxOutputTokens: 500,
-            },
         });
 
         const result = await chat.sendMessage(message);
@@ -30,9 +30,9 @@ const chatWithGemini = asyncHandler(async (req, res) => {
 
         res.json({ text });
     } catch (error) {
-        console.error('Gemini API Error:', error);
+        console.error('Gemini API Detailed Error:', error);
         res.status(500);
-        throw new Error('Failed to get response from Gemini');
+        throw new Error('Failed to get response from Gemini: ' + error.message);
     }
 });
 

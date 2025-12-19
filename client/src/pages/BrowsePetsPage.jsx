@@ -24,17 +24,17 @@ const BrowsePetsPage = () => {
   }, [dispatch, category, age, breed, location]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Browse Pets</h1>
+    <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-28 pb-10 px-4 sm:px-6 lg:px-8 transition-colors duration-500">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Find Your Best Friend</h1>
 
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
         {/* Filters Sidebar */}
-        <div className="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-md h-fit">
-          <h2 className="text-lg font-semibold mb-4 text-forest-green">Filters</h2>
-          <div className="space-y-4">
+        <div className="w-full md:w-1/4 bg-white/60 backdrop-blur-xl p-6 rounded-3xl shadow-xl shadow-pastel-purple/10 border border-white/60 h-fit transition-all duration-300 hover:shadow-pastel-purple/20">
+          <h2 className="text-2xl font-bold mb-6 text-gray-700 border-b border-pastel-pink/30 pb-2">Filters</h2>
+          <div className="space-y-5">
             {/* Location Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-2 pl-1">Location</label>
               <select
                 value={selectedLocation}
                 onChange={(e) => {
@@ -43,7 +43,7 @@ const BrowsePetsPage = () => {
                     setCustomLocation('');
                   }
                 }}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm border p-2"
+                className="w-full bg-white/50 border-pastel-pink/30 rounded-xl shadow-sm focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm border p-3 outline-none transition-all hover:bg-white/80"
               >
                 <option value="">All Locations</option>
                 <option value="Mumbai">Mumbai</option>
@@ -57,10 +57,19 @@ const BrowsePetsPage = () => {
                 <option value="Jaipur">Jaipur</option>
                 <option value="Other">Other</option>
               </select>
+              {selectedLocation === 'Other' && (
+                <input
+                  type="text"
+                  placeholder="Specify Location..."
+                  value={customLocation}
+                  onChange={(e) => setCustomLocation(e.target.value)}
+                  className="mt-3 w-full bg-white/50 border-pastel-pink/30 rounded-xl shadow-sm focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm border p-3 outline-none"
+                />
+              )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-2 pl-1">Category</label>
               <select
                 value={selectedCategory}
                 onChange={(e) => {
@@ -69,7 +78,7 @@ const BrowsePetsPage = () => {
                     setCustomCategory('');
                   }
                 }}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm border p-2"
+                className="w-full bg-white/50 border-pastel-pink/30 rounded-xl shadow-sm focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm border p-3 outline-none transition-all hover:bg-white/80"
               >
                 <option value="">All Categories</option>
                 <option value="Dog">Dog</option>
@@ -82,37 +91,28 @@ const BrowsePetsPage = () => {
                   placeholder="Specify Category..."
                   value={customCategory}
                   onChange={(e) => setCustomCategory(e.target.value)}
-                  className="mt-2 w-full border-gray-300 rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm border p-2"
-                />
-              )}
-              {selectedCategory === 'Other' && (
-                <input
-                  type="text"
-                  placeholder="Specify Category..."
-                  value={customCategory}
-                  onChange={(e) => setCustomCategory(e.target.value)}
-                  className="mt-2 w-full border-gray-300 rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm border p-2"
+                  className="mt-3 w-full bg-white/50 border-pastel-pink/30 rounded-xl shadow-sm focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm border p-3 outline-none"
                 />
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Age</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-2 pl-1">Age</label>
               <input
                 type="number"
                 placeholder="Age"
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm border p-2"
+                className="w-full bg-white/50 border-pastel-pink/30 rounded-xl shadow-sm focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm border p-3 outline-none transition-all hover:bg-white/80"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Breed</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-2 pl-1">Breed</label>
               <input
                 type="text"
                 placeholder="Breed"
                 value={breed}
                 onChange={(e) => setBreed(e.target.value)}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-forest-green focus:border-forest-green sm:text-sm border p-2"
+                className="w-full bg-white/50 border-pastel-pink/30 rounded-xl shadow-sm focus:ring-2 focus:ring-pastel-purple focus:border-transparent sm:text-sm border p-3 outline-none transition-all hover:bg-white/80"
               />
             </div>
           </div>
@@ -122,16 +122,20 @@ const BrowsePetsPage = () => {
         <div className="w-full md:w-3/4">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-forest-green"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pastel-purple"></div>
             </div>
           ) : error ? (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">{error}</div>
+            <div className="bg-red-50 border border-red-200 text-red-600 px-6 py-4 rounded-2xl shadow-sm relative text-center" role="alert">{error}</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {pets.map((pet) => (
                 <PetCard key={pet._id} pet={pet} />
               ))}
-              {pets.length === 0 && <p className="text-gray-500 col-span-full text-center py-10">No pets found matching your criteria.</p>}
+              {pets.length === 0 && (
+                <div className="col-span-full text-center py-20 flex flex-col items-center justify-center opacity-60">
+                  <p className="text-gray-500 text-xl font-medium">No pets found matching your criteria.</p>
+                </div>
+              )}
             </div>
           )}
         </div>

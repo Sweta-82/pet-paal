@@ -97,7 +97,7 @@ const DonationPage = () => {
           address: 'Pet-Paal Corporate Office',
         },
         theme: {
-          color: '#2E8B57', // Forest Green
+          color: '#B19CD9', // Pastel Purple
         },
       };
 
@@ -116,35 +116,35 @@ const DonationPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-off-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Support Our Mission</h1>
-          <p className="mt-2 text-gray-600">Your donation helps us find loving homes for pets in need.</p>
+    <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-32 pb-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center transition-colors duration-500">
+      <div className="max-w-lg w-full bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl shadow-pastel-purple/20 border border-white/60 overflow-hidden p-10 transform transition-all">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold text-gray-800 mb-3" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Support Our Mission</h1>
+          <p className="text-gray-600 text-lg">Your donation helps us find loving homes for pets in need.</p>
         </div>
 
         <div className="mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Select Amount (INR)</label>
-          <div className="grid grid-cols-3 gap-4 mb-4">
+          <label className="block text-sm font-bold text-gray-700 mb-4 uppercase tracking-wide">Select Amount (INR)</label>
+          <div className="grid grid-cols-3 gap-4 mb-6">
             {[100, 500, 1000].map((val) => (
               <button
                 key={val}
                 onClick={() => setAmount(val)}
-                className={`py-2 px-4 border rounded-md text-sm font-medium ${amount === val ? 'bg-forest-green text-white border-forest-green' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                className={`py-3 px-2 border-2 rounded-2xl text-sm font-bold transition-all duration-300 ${amount === val ? 'bg-pastel-purple text-white border-pastel-purple shadow-lg scale-105' : 'bg-white/50 text-gray-600 border-pastel-pink/30 hover:border-pastel-pink hover:bg-white'}`}
               >
                 ₹{val}
               </button>
             ))}
           </div>
-          <div className="relative rounded-md shadow-sm">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-500 sm:text-sm">₹</span>
+          <div className="relative rounded-2xl shadow-sm">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span className="text-pastel-purple text-xl font-bold">₹</span>
             </div>
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}
-              className="focus:ring-forest-green focus:border-forest-green block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2 border"
+              className="focus:ring-2 focus:ring-pastel-purple focus:border-transparent block w-full pl-10 pr-12 text-xl font-medium border-pastel-pink/30 rounded-2xl py-3 border bg-white/50 outline-none text-gray-800 placeholder-gray-400 transition-all"
               placeholder="0.00"
             />
           </div>
@@ -153,7 +153,7 @@ const DonationPage = () => {
         <button
           onClick={handlePayment}
           disabled={loading}
-          className={`w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-forest-green hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-forest-green disabled:opacity-50 transition-colors`}
+          className={`w-full py-4 px-6 border border-transparent rounded-2xl shadow-xl text-lg font-bold text-white bg-gradient-to-r from-pastel-purple to-pastel-pink hover:from-pastel-pink hover:to-pastel-purple transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pastel-purple disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300`}
         >
           {loading ? 'Processing...' : `Donate ₹${amount}`}
         </button>

@@ -20,7 +20,7 @@ import DonationPage from './pages/DonationPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import Footer from './components/layout/Footer';
-import Chatbot from './components/common/Chatbot';
+
 
 import ErrorBoundary from './components/common/ErrorBoundary';
 
@@ -91,7 +91,7 @@ const App = () => {
           </Routes>
         </main>
         <Footer />
-        <Chatbot />
+
       </div>
     </ErrorBoundary >
   );

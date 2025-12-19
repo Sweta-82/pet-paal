@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('new_message', async (newMessageReceived) => {
-        const { sender, receiver, content, chatId } = newMessageReceived;
+        const { sender, receiver, content, chatId, pet } = newMessageReceived;
 
         if (!receiver) return console.log('Receiver not defined');
 
@@ -109,6 +109,7 @@ io.on('connection', (socket) => {
             const message = await Message.create({
                 sender: sender._id,
                 receiver: receiver._id,
+                pet: pet ? pet._id : null,
                 content,
                 chatId,
             });
