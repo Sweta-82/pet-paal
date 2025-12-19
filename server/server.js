@@ -18,7 +18,6 @@ import adminRoutes from './routes/adminRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
-import chatbotRoutes from './routes/chatbotRoutes.js';
 
 import Message from './models/Message.js';
 import Notification from './models/Notification.js';
@@ -75,7 +74,6 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/blogs', blogRoutes);
-app.use('/api/chatbot', chatbotRoutes);
 
 app.get('/', (req, res) => {
     res.send('API is running...');
