@@ -83,7 +83,7 @@ const CreatePetPage = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen pt-32 transition-colors duration-500">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm text-center" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
         {id ? 'Edit Pet Details' : 'List a New Pet'}
       </h1>
 

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -70,11 +71,4 @@ body {
 
 .animation-delay-2000 {
   animation-delay: 2s;
-}
-
-@font-face {
-  font-family: 'BBH Bartle Static';
-  src: url('/fonts/BBHBartle-Static.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }

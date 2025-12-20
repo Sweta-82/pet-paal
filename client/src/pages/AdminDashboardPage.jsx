@@ -36,7 +36,7 @@ const AdminDashboardPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen pt-32 transition-colors duration-500">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Admin Dashboard</h1>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: "'Playfair Display', serif" }}>Admin Dashboard</h1>
 
       {/* Tabs */}
       <div className="flex space-x-4 mb-6 border-b border-pastel-pink/20">

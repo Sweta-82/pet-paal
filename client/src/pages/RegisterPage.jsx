@@ -28,7 +28,7 @@ const RegisterPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-pastel-bg bg-opacity-50 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500">
       <div className="max-w-md w-full space-y-8 register-container bg-white/60 backdrop-blur-xl p-10 rounded-3xl shadow-2xl shadow-pastel-purple/20 border border-white/60">
         <div>
-          <h2 className="mt-6 text-center text-4xl font-bold text-gray-800 drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>
+          <h2 className="mt-6 text-center text-4xl font-bold text-gray-800 drop-shadow-sm" style={{ fontFamily: "'Playfair Display', serif" }}>
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">

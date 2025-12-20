@@ -25,7 +25,7 @@ const BlogPage = () => {
     <div className="min-h-screen bg-pastel-bg bg-opacity-50 py-12 px-4 sm:px-6 lg:px-8 pt-32 transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>
+          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl drop-shadow-sm" style={{ fontFamily: "'Playfair Display', serif" }}>
             Pet Care <span className="text-pastel-purple">Blog</span>
           </h1>
           <p className="mt-5 max-w-xl mx-auto text-xl text-gray-600 font-medium">
@@ -52,7 +52,7 @@ const BlogPage = () => {
                       {blog.tags.join(', ')}
                     </p>
                     <div className="block mt-2">
-                      <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>{blog.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'Playfair Display', serif" }}>{blog.title}</h3>
                       <p className="mt-3 text-base text-gray-600 line-clamp-3">{blog.content}</p>
                     </div>
                   </div>

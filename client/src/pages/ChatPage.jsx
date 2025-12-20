@@ -132,7 +132,7 @@ const ChatPage = () => {
       {/* Sidebar */}
       <div className="w-1/3 bg-white/60 backdrop-blur-xl border-r border-white/40 overflow-y-auto hidden md:block">
         <div className="p-4 border-b border-pastel-pink/20 bg-pastel-purple/5 sticky top-0 z-10 backdrop-blur-md">
-          <h2 className="text-xl font-bold text-gray-800" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Messages</h2>
+          <h2 className="text-xl font-bold text-gray-800" style={{ fontFamily: "'Playfair Display', serif" }}>Messages</h2>
         </div>
         <ul>
           {conversations.map((conv) => {

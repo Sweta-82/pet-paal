@@ -105,7 +105,7 @@ const HeroSlider = ({ pets }) => {
                 <h1
                     ref={headingRef}
                     className="text-6xl md:text-8xl tracking-wide text-white mb-4 drop-shadow-2xl leading-none"
-                    style={{ fontFamily: '"BBH Bartle Static", sans-serif', fontWeight: 900 }}
+                    style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900 }}
                 >
                     {"ADOPT ME".split("").map((char, index) => (
                         <span key={index} className="inline-block letter perspective-1000">

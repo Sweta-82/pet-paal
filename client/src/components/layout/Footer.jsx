@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1 space-y-4">
             <Link to="/" className="flex items-center group">
-              <span className="text-3xl font-bold text-pastel-purple group-hover:text-pastel-pink transition-colors" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Pet-Paal</span>
+              <span className="text-3xl font-bold text-pastel-purple group-hover:text-pastel-pink transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>Pet-Paal</span>
             </Link>
             <p className="text-gray-600 text-sm leading-relaxed px-1">
               Connecting pets with loving homes. Join our community and make a difference in a pet's life today.

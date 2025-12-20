@@ -53,7 +53,18 @@ app.use(cors({
     origin: ['http://localhost:5173', 'http://localhost:5174'], // Allow both ports
     credentials: true
 }));
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            scriptSrc: ["'self'"],
+            imgSrc: ["'self'", "data:", "https:", "http:"],
+            fontSrc: ["'self'", "data:"],
+            connectSrc: ["'self'", "https:", "http:"],
+        },
+    },
+}));
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
@@ -65,8 +76,12 @@ const limiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false,
 });
+
 app.use(limiter);
 
+// app.get("/",(req, res) => {
+//      res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+// });
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/pets', petRoutes);
@@ -77,13 +92,14 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/blogs', blogRoutes);
 
-app.get('/', (req, res) => {
-    res.send('API is running...');
-});
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Error Handling
 app.use(notFound);
 app.use(errorHandler);
+
 
 // Socket.io
 io.on('connection', (socket) => {
@@ -139,13 +155,12 @@ io.on('connection', (socket) => {
 });
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // ... existing code ...
 
 const PORT = process.env.PORT || 5000;
 
+// Serve static files in production
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -158,6 +173,7 @@ if (process.env.NODE_ENV === 'production') {
         res.send('API is running...');
     });
 }
+
 
 server.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);

@@ -49,7 +49,7 @@ const BlogPostPage = () => {
             </span>
             <span className="text-sm text-gray-500 font-medium">{new Date(blog.createdAt).toLocaleDateString()}</span>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-8 leading-tight" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>{blog.title}</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-8 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{blog.title}</h1>
           <div className="prose prose-lg prose-purple max-w-none text-gray-700 leading-relaxed">
             {blog.content.split('\n').map((paragraph, idx) => (
               <p key={idx} className="mb-6">{paragraph}</p>

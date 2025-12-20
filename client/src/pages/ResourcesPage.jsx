@@ -51,7 +51,7 @@ const ResourcesPage = () => {
     <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-32 pb-12 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-800 sm:text-6xl drop-shadow-sm mb-6" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>
+          <h1 className="text-5xl font-bold text-gray-800 sm:text-6xl drop-shadow-sm mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
             Pet Care Resources
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">

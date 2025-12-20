@@ -41,7 +41,7 @@ const PetDetailsPage = () => {
           <div className="md:w-1/2 p-10 flex flex-col justify-center">
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h1 className="text-5xl font-bold text-gray-800 drop-shadow-sm mb-2" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>{pet.name}</h1>
+                <h1 className="text-5xl font-bold text-gray-800 drop-shadow-sm mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>{pet.name}</h1>
                 <p className="text-gray-600 flex items-center text-lg">
                   <FaMapMarkerAlt className="mr-2 text-pastel-purple" /> {pet.location || pet.shelter?.location || 'Location not available'}
                 </p>
@@ -71,7 +71,7 @@ const PetDetailsPage = () => {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-800 mb-3" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>About {pet.name}</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>About {pet.name}</h3>
               <p className="text-gray-600 leading-relaxed text-lg bg-white/40 p-6 rounded-2xl border border-white/50">{pet.description}</p>
             </div>
 

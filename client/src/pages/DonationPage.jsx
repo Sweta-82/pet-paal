@@ -119,7 +119,7 @@ const DonationPage = () => {
     <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-32 pb-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center transition-colors duration-500">
       <div className="max-w-lg w-full bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl shadow-pastel-purple/20 border border-white/60 overflow-hidden p-10 transform transition-all">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-800 mb-3" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Support Our Mission</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Support Our Mission</h1>
           <p className="text-gray-600 text-lg">Your donation helps us find loving homes for pets in need.</p>
         </div>
 

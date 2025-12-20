@@ -49,7 +49,7 @@ const DashboardPage = () => {
 
   return (
     <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-32 pb-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Welcome, {userInfo.name}!</h1>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: "'Playfair Display', serif" }}>Welcome, {userInfo.name}!</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Profile Section */}

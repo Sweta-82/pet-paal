@@ -25,7 +25,7 @@ const BrowsePetsPage = () => {
 
   return (
     <div className="min-h-screen bg-pastel-bg bg-opacity-50 pt-28 pb-10 px-4 sm:px-6 lg:px-8 transition-colors duration-500">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Find Your Best Friend</h1>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center drop-shadow-sm" style={{ fontFamily: "'Playfair Display', serif" }}>Find Your Best Friend</h1>
 
       <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
         {/* Filters Sidebar */}

@@ -33,7 +33,7 @@ const AdoptionFormPage = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen pt-32 transition-colors duration-500">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: '"BBH Bartle Static", sans-serif' }}>Adopt {pet.name}</h1>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 drop-shadow-sm" style={{ fontFamily: "'Playfair Display', serif" }}>Adopt {pet.name}</h1>
 
       <div className="bg-white/60 backdrop-blur-xl p-10 rounded-3xl shadow-2xl shadow-pastel-purple/20 border border-white/60">
         <div className="flex items-center mb-6">
