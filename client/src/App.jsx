@@ -36,7 +36,7 @@ const AdminRoute = () => {
   return userInfo && userInfo.role === 'admin' ? <Outlet /> : <Navigate to="/" />;
 };
 
-const ENDPOINT = 'http://localhost:5000'; // Make sure this matches your server URL
+const ENDPOINT = '/'; // Relative URL for socket.io
 
 const App = () => {
   const { userInfo } = useSelector((state) => state.auth);

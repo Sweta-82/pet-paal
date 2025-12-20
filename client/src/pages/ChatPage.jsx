@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import { FaPaperPlane, FaUserCircle } from 'react-icons/fa';
 
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = '/';
 var socket;
 
 const ChatPage = () => {

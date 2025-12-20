@@ -1,0 +1,14 @@
+{
+    "name": "pet-paal-root",
+    "version": "1.0.0",
+    "description": "Deployment root for Pet Paal",
+    "scripts": {
+        "build": "npm install --prefix client && npm run build --prefix client && npm install --prefix server",
+        "start": "npm start --prefix server"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "author": "",
+    "license": "ISC"
+}
