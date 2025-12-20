@@ -57,11 +57,13 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'"],
-            scriptSrc: ["'self'", "https://checkout.razorpay.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://api.razorpay.com"],
+            scriptSrc: ["'self'", "https://checkout.razorpay.com", "https://api.razorpay.com"],
             imgSrc: ["'self'", "data:", "https:", "http:"],
-            fontSrc: ["'self'", "data:"],
+            fontSrc: ["'self'", "data:", "https:"],
             connectSrc: ["'self'", "https:", "http:"],
+            frameSrc: ["'self'", "https://api.razorpay.com", "https://checkout.razorpay.com"],
+            childSrc: ["https://api.razorpay.com", "https://checkout.razorpay.com"],
         },
     },
 }));
