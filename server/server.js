@@ -58,7 +58,7 @@ app.use(helmet({
         directives: {
             defaultSrc: ["'self'"],
             styleSrc: ["'self'", "'unsafe-inline'"],
-            scriptSrc: ["'self'"],
+            scriptSrc: ["'self'", "https://checkout.razorpay.com"],
             imgSrc: ["'self'", "data:", "https:", "http:"],
             fontSrc: ["'self'", "data:"],
             connectSrc: ["'self'", "https:", "http:"],

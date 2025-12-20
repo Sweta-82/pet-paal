@@ -30,6 +30,7 @@
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
+    "pet-paal-root": "file:..",
     "razorpay": "^2.9.6",
     "socket.io": "^4.8.1",
     "stripe": "^20.0.0",
