@@ -57,15 +57,16 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://api.razorpay.com"],
-            scriptSrc: ["'self'", "https://checkout.razorpay.com", "https://api.razorpay.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://api.razorpay.com", "https://cdn.razorpay.com"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://checkout.razorpay.com", "https://api.razorpay.com", "https://cdn.razorpay.com"],
             imgSrc: ["'self'", "data:", "https:", "http:"],
-            fontSrc: ["'self'", "data:", "https:"],
-            connectSrc: ["'self'", "https:", "http:"],
-            frameSrc: ["'self'", "https://api.razorpay.com", "https://checkout.razorpay.com"],
+            fontSrc: ["'self'", "data:", "https:", "https://fonts.gstatic.com"],
+            connectSrc: ["'self'", "https:", "http:", "https://api.razorpay.com", "https://lumberjack.razorpay.com", "https://*.razorpay.com"],
+            frameSrc: ["'self'", "https://api.razorpay.com", "https://checkout.razorpay.com", "https://*.razorpay.com"],
             childSrc: ["https://api.razorpay.com", "https://checkout.razorpay.com"],
         },
     },
+    crossOriginOpenerPolicy: false,
 }));
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -96,11 +97,11 @@ app.use('/api/blogs', blogRoutes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
- app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
- app.use(/.*/,  (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
-    });
+app.use(/.*/, (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+});
 // Error Handling
 
 app.use(errorHandler);
