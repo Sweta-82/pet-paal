@@ -5,11 +5,14 @@ import {
     createPet,
     updatePet,
     deletePet,
+    getShelterPets,
 } from '../controllers/petController.js';
 import { protect, authorize } from '../middleware/authMiddleware.js';
 import upload from '../middleware/uploadMiddleware.js';
 
 const router = express.Router();
+
+router.get('/my-pets', protect, authorize('shelter'), getShelterPets);
 
 router.route('/')
     .get(getPets)

@@ -136,10 +136,19 @@ const deletePet = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc    Get logged in shelter's pets
+// @route   GET /api/pets/my-pets
+// @access  Private/Shelter
+const getShelterPets = asyncHandler(async (req, res) => {
+    const pets = await Pet.find({ shelter: req.user._id }).sort({ createdAt: -1 });
+    res.json(pets);
+});
+
 export {
     getPets,
     getPetById,
     createPet,
     updatePet,
     deletePet,
+    getShelterPets,
 };

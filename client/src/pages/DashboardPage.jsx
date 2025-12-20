@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from '../redux/slices/authSlice';
 import { fetchMyApplications, fetchShelterApplications, updateApplicationStatus } from '../redux/slices/applicationSlice';
+import { fetchShelterPets } from '../redux/slices/petSlice';
 import { useForm } from 'react-hook-form';
 
 const DashboardPage = () => {
   const { userInfo, loading: authLoading } = useSelector((state) => state.auth);
   const { applications, loading: appLoading } = useSelector((state) => state.applications);
+  const { pets, loading: petsLoading } = useSelector((state) => state.pets);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit, setValue } = useForm();
@@ -29,6 +31,7 @@ const DashboardPage = () => {
         dispatch(fetchMyApplications());
       } else if (userInfo.role === 'shelter') {
         dispatch(fetchShelterApplications());
+        dispatch(fetchShelterPets());
       }
     }
   }, [navigate, userInfo, setValue, dispatch]);
@@ -121,9 +124,30 @@ const DashboardPage = () => {
           ) : (
             <>
               <div className="bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-2xl shadow-pastel-purple/10 border border-white/60">
-                <h2 className="text-2xl font-bold mb-6 text-gray-700 border-b border-pastel-pink/30 pb-2">Manage Pets</h2>
-                <p className="text-gray-500 mb-4">You haven't listed any pets yet.</p>
-                <button onClick={() => navigate('/create-pet')} className="bg-pastel-pink text-white py-3 px-6 rounded-2xl font-bold shadow-md hover:bg-pastel-purple hover:shadow-lg transform hover:scale-[1.02] transition-all">Add New Pet</button>
+                <div className="flex justify-between items-center mb-6 border-b border-pastel-pink/30 pb-2">
+                  <h2 className="text-2xl font-bold text-gray-700">Manage Pets</h2>
+                  <button onClick={() => navigate('/create-pet')} className="bg-pastel-pink text-white py-2 px-4 rounded-xl font-bold shadow-md hover:bg-pastel-purple hover:shadow-lg transform hover:scale-[1.02] transition-all text-sm">Add New Pet</button>
+                </div>
+
+                {petsLoading ? (
+                  <div className="text-center py-4 text-gray-500">Loading pets...</div>
+                ) : pets.length === 0 ? (
+                  <p className="text-gray-500 mb-4">You haven't listed any pets yet.</p>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {pets.map((pet) => (
+                      <div key={pet._id} className="bg-white/40 border border-white/50 p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-start gap-4">
+                        <img src={pet.images[0] || 'https://via.placeholder.com/150'} alt={pet.name} className="w-20 h-20 rounded-xl object-cover shadow-sm" />
+                        <div className="flex-1">
+                          <h3 className="font-bold text-lg text-gray-800">{pet.name}</h3>
+                          <p className="text-xs text-gray-500">{pet.breed} • {pet.age} yrs</p>
+                          <p className={`text-xs font-bold mt-1 ${pet.status === 'Available' ? 'text-green-600' : 'text-gray-500'}`}>{pet.status}</p>
+                          <button onClick={() => navigate(`/pets/edit/${pet._id}`)} className="text-pastel-purple text-xs font-bold mt-2 hover:text-pastel-pink transition-colors">Edit Pet</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-2xl shadow-pastel-purple/10 border border-white/60">
                 <h2 className="text-2xl font-bold mb-6 text-gray-700 border-b border-pastel-pink/30 pb-2">Incoming Applications</h2>

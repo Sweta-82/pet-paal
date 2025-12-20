@@ -17,7 +17,8 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [socketConnected, setSocketConnected] = useState(false);
-  const messagesEndRef = useRef(null);
+  const scrollRef = useRef(null);
+  const messagesEndRef = useRef(null); // Deprecated but keeping variable definition to avoid breaking if referenced elsewhere, though I replaced usage. Actually better to remove it if unused. I'll just replace the block.
 
   // Initialize Socket
   useEffect(() => {
@@ -96,7 +97,12 @@ const ChatPage = () => {
 
   // Scroll to bottom
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }, [messages]);
 
   const [sending, setSending] = useState(false);
@@ -179,7 +185,7 @@ const ChatPage = () => {
               </div>
             </div>
 
-            <div className="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar">
+            <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar">
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -198,7 +204,6 @@ const ChatPage = () => {
                   </div>
                 </div>
               ))}
-              <div ref={messagesEndRef} />
             </div>
 
             <div className="p-4 bg-white/60 backdrop-blur-xl border-t border-white/40">

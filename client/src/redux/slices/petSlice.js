@@ -105,6 +105,19 @@ export const deletePet = createAsyncThunk('pets/deletePet', async (id, { getStat
     }
 });
 
+export const fetchShelterPets = createAsyncThunk('pets/fetchShelterPets', async (_, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.get('/api/pets/my-pets', { withCredentials: true });
+        return data; // Should be an array of pets
+    } catch (error) {
+        return rejectWithValue(
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        );
+    }
+});
+
 const petSlice = createSlice({
     name: 'pets',
     initialState,
@@ -167,6 +180,17 @@ const petSlice = createSlice({
                 state.pets = state.pets.filter((p) => p._id !== action.payload);
             })
             .addCase(deletePet.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(fetchShelterPets.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchShelterPets.fulfilled, (state, action) => {
+                state.loading = false;
+                state.pets = action.payload;
+            })
+            .addCase(fetchShelterPets.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });
