@@ -24,7 +24,7 @@ import blogRoutes from './routes/blogRoutes.js';
 import Message from './models/Message.js';
 import Notification from './models/Notification.js';
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 connectDB();
 
