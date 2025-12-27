@@ -84,7 +84,7 @@ npm run dev
 *This starts the React website (usually on localhost:5173).*
 
 ---
-## Environment Variables
+## ## 🔐 Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file in the `backend` folder.
 
@@ -105,17 +105,3 @@ CLOUDINARY_API_SECRET=your_api_secret
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 
-## 🛠️ Key Technologies Used
-
-*   **MERN Stack**: MongoDB, Express, React, Node.js.
-*   **Vite**: A tool that makes the React app run very fast.
-*   **Tailwind CSS**: Used for styling the website (colors, spacing) easily.
-*   **Redux Toolkit**: Manages complex data states.
-*   **Socket.io**: Used for real-time chat functionality.
-
----
-
-## 🔍 Troubleshooting Tips
-
-*   **"Connection Refused"**: Make sure your **Server** is running! The Client needs the Server to get data.
-*   **"Env variable missing"**: Check your `.env` files in both `client` and `server` folders. They hold secret keys like database passwords.
