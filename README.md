@@ -84,29 +84,21 @@ npm run dev
 *This starts the React website (usually on localhost:5173).*
 
 ---
-## Environment Variables
+## Enviroment Variable
+To run this project, you will need to add the following environment variables to your .env file in the backend folder.
 
-To run this project, you will need to add the following environment variables to your .env file in the `backend` folder.
-
-`PORT` is usually set to 5000.
-
-```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_complex_jwt_secret
-NODE_ENV=development
-
-# Cloudinary Credentials
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-# Razorpay Credentials
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+MONGO_URI=
+JWT_SECRET=
+NODE_ENV=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
 
 
-## Key Technologies Used
+## 🛠️ Key Technologies Used
 
 *   **MERN Stack**: MongoDB, Express, React, Node.js.
 *   **Vite**: A tool that makes the React app run very fast.
@@ -116,7 +108,7 @@ RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 
 ---
 
-## Troubleshooting Tips
+## 🔍 Troubleshooting Tips
 
 *   **"Connection Refused"**: Make sure your **Server** is running! The Client needs the Server to get data.
 *   **"Env variable missing"**: Check your `.env` files in both `client` and `server` folders. They hold secret keys like database passwords.
