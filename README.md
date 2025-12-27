@@ -103,7 +103,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 
 # Razorpay Credentials
 RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret ```
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 
 
 
